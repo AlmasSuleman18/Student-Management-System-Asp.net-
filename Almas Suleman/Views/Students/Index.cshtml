@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Almas_Suleman.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+    /* Custom CSS for advanced table styling */
+    .styled-table {
+        border-collapse: collapse;
+        width: 100%;
+        border: 1px solid #DE91BF;
+    }
+
+        .styled-table th, .styled-table td {
+            border: 1px solid #DE91BF;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .styled-table th {
+            background-color: #B95B90;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background-color: #B95B90;
+        }
+
+    .btn {
+        text-decoration: none;
+        margin-right: 8px;
+        padding: 8px 16px;
+        border-radius: 4px;
+        color: #fff; /* Button text color */
+    }
+
+    .btn-edit {
+        background-color: #F56BAC; /* Light pink color for edit button */
+    }
+
+    .btn-details {
+        background-color: #9B59B6; /* Light purple color for details button */
+    }
+
+    .btn-delete {
+        background-color: #FF6F61; /* Light pink color for delete button */
+    }
+</style>
+
+<h1 style="font-family: Arial, sans-serif; color: #333; margin-bottom: 20px;">Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn" style="background-color: #F62681;">Create New</a>
+</p>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Semester)</th>
+            <th>@Html.DisplayNameFor(model => model.Age)</th>
+            <th>@Html.DisplayNameFor(model => model.Contact)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Semester)</td>
+                <td>@Html.DisplayFor(modelItem => item.Age)</td>
+                <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-edit"><i class="fas fa-edit"></i> Edit</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-details"><i class="fas fa-info-circle"></i> Details</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-delete"><i class="fas fa-trash-alt"></i> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
